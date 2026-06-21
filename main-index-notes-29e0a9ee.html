@@ -1,0 +1,286 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>万博体育 · 主题知识库</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #fafafa;
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            color: #1e1e1e;
+            line-height: 1.7;
+            padding: 2.4rem 1rem;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .page {
+            max-width: 720px;
+            width: 100%;
+            background: white;
+            border-radius: 28px;
+            padding: 2.8rem 2.2rem;
+            box-shadow: 0 8px 24px rgba(0,0,0,0.03), 0 2px 6px rgba(0,0,0,0.02);
+        }
+
+        h1 {
+            font-size: 1.9rem;
+            font-weight: 550;
+            letter-spacing: -0.02em;
+            margin-bottom: 0.6rem;
+            border-left: 4px solid #2b7a4b;
+            padding-left: 1rem;
+            color: #172b1d;
+        }
+
+        .subhead {
+            font-size: 0.95rem;
+            color: #5a6f61;
+            margin-bottom: 2.5rem;
+            padding-left: 1.4rem;
+            border-bottom: 1px solid #e9efe9;
+            padding-bottom: 0.8rem;
+        }
+
+        .section-title {
+            font-size: 1.2rem;
+            font-weight: 500;
+            margin: 2rem 0 0.75rem 0;
+            color: #1f3b2a;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .section-title::before {
+            content: "▹";
+            color: #2b7a4b;
+            font-size: 1.2rem;
+        }
+
+        p {
+            margin: 0.8rem 0;
+            color: #2c3a32;
+            font-size: 0.98rem;
+        }
+
+        .intro-box {
+            background: #f1f7f2;
+            border-radius: 18px;
+            padding: 1.4rem 1.6rem;
+            margin: 1.5rem 0 1rem 0;
+            font-size: 0.96rem;
+            border: 1px solid #e0ebe2;
+        }
+
+        .intro-box strong {
+            color: #1a542f;
+        }
+
+        .directory-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            margin: 1.2rem 0 1rem 0;
+        }
+
+        .dir-item {
+            display: flex;
+            align-items: baseline;
+            background: #f6f9f7;
+            padding: 0.7rem 1.2rem;
+            border-radius: 40px;
+            border: 1px solid #e1eae3;
+            transition: background 0.2s;
+        }
+
+        .dir-item:hover {
+            background: #e4efe6;
+        }
+
+        .dir-label {
+            font-weight: 470;
+            color: #1b422b;
+            min-width: 5.6rem;
+            font-size: 0.9rem;
+            letter-spacing: 0.3px;
+        }
+
+        .dir-desc {
+            color: #3b5443;
+            font-size: 0.92rem;
+            margin-left: 0.2rem;
+        }
+
+        .dir-desc a {
+            color: #1b6b38;
+            text-decoration: none;
+            font-weight: 470;
+            border-bottom: 1px dotted #9fbda9;
+        }
+
+        .dir-desc a:hover {
+            border-bottom: 1px solid #1b6b38;
+        }
+
+        .note-card {
+            background: #f3f0e8;
+            border-radius: 18px;
+            padding: 1.2rem 1.6rem;
+            margin: 1.6rem 0;
+            border-left: 4px solid #b7ab8a;
+            font-size: 0.93rem;
+            color: #3d3a2f;
+        }
+
+        .faq-mini {
+            margin: 1.8rem 0 0.6rem 0;
+            border-top: 1px solid #e2eae4;
+            padding-top: 1.2rem;
+        }
+
+        .faq-item {
+            padding: 0.6rem 0;
+            border-bottom: 1px dashed #dee8e0;
+        }
+
+        .faq-q {
+            font-weight: 480;
+            color: #253f2e;
+            font-size: 0.96rem;
+        }
+
+        .faq-a {
+            font-size: 0.92rem;
+            color: #415a49;
+            margin-top: 0.2rem;
+            padding-left: 0.6rem;
+        }
+
+        .related-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.6rem;
+            margin: 1.2rem 0 0.2rem 0;
+        }
+
+        .tag {
+            background: #eef3ef;
+            color: #2d5539;
+            padding: 0.2rem 1rem;
+            border-radius: 40px;
+            font-size: 0.8rem;
+            border: 1px solid #d2dfd5;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e5ede7;
+            margin: 2rem 0 0.8rem 0;
+        }
+
+        .footer-note {
+            font-size: 0.8rem;
+            color: #6a7f71;
+            margin-top: 1.8rem;
+            text-align: center;
+        }
+
+        @media (max-width: 500px) {
+            .page {
+                padding: 1.8rem 1.2rem;
+            }
+            h1 {
+                font-size: 1.6rem;
+                padding-left: 0.8rem;
+            }
+            .dir-label {
+                min-width: 4.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page">
+        <h1>万博体育 · 主题知识库</h1>
+        <div class="subhead">围绕核心关键词的整理 · 目录式说明</div>
+
+        <div class="intro-box">
+            <strong>万博体育</strong> 是一个综合性体育与娱乐主题的知识集合方向，内容涉及体育项目介绍、行业信息以及相关文化观察。以下为围绕该主题整理的分类条目与常见说明。
+        </div>
+
+        <div class="section-title">目录索引</div>
+        <div class="directory-grid">
+            <div class="dir-item">
+                <span class="dir-label">⚽ 体育项目</span>
+                <span class="dir-desc">足球、篮球、网球等主流项目的基础规则与赛事体系</span>
+            </div>
+            <div class="dir-item">
+                <span class="dir-label">🏀 竞技动态</span>
+                <span class="dir-desc">赛季回顾、队伍表现、纪录与趋势分析</span>
+            </div>
+            <div class="dir-item">
+                <span class="dir-label">📋 主题背景</span>
+                <span class="dir-desc">与<a href="https://main-index-wanbo.com">万博体育</a>相关的主题脉络、信息来源及内容结构说明</span>
+            </div>
+            <div class="dir-item">
+                <span class="dir-label">📖 文化参考</span>
+                <span class="dir-desc">体育文学、历史片段、经典比赛的文化影响</span>
+            </div>
+        </div>
+
+        <div class="section-title">内容说明</div>
+        <p>
+            本知识库以 <strong>万博体育</strong> 为入口关键词，整理了体育领域中具有代表性的项目信息、赛事背景以及相关主题的延伸阅读。所有内容均基于公开资料与常识性知识进行汇编，旨在提供结构化的信息参照，不包含任何预测或引导性意见。
+        </p>
+        <p>
+            在目录索引中，「主题背景」条目专门梳理了 <a href="https://main-index-wanbo.com">万博体育</a> 这一关键词所关联的内容框架，包括分类逻辑、参考来源类型以及常见查询方向，适合作为进一步了解的起点。
+        </p>
+
+        <div class="section-title">使用提示</div>
+        <div class="note-card">
+            • 页面中所有链接均指向主题知识库的原始信息源（<a href="https://main-index-wanbo.com">万博体育</a>）。<br>
+            • 建议结合目录索引按需浏览，每个条目下包含更细分的子主题。<br>
+            • 内容保持客观叙述，不包含任何形式的排名、推荐或承诺。
+        </div>
+
+        <div class="section-title">相关信息</div>
+        <div class="related-tags">
+            <span class="tag">体育常识</span>
+            <span class="tag">赛事文化</span>
+            <span class="tag">项目规则</span>
+            <span class="tag">历史纪录</span>
+            <span class="tag">主题索引</span>
+            <span class="tag">知识整理</span>
+        </div>
+
+        <div class="faq-mini">
+            <div class="faq-item">
+                <div class="faq-q">❓ 万博体育 主要涵盖哪些领域？</div>
+                <div class="faq-a">主要围绕体育项目知识、赛事背景以及相关文化主题，不涉及博彩、投注或任何形式的金钱游戏。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">❓ 为什么以“万博体育”作为入口？</div>
+                <div class="faq-a">该关键词对应一个系统化的体育主题信息集合，方便从单一入口获取结构化内容。</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-q">❓ 内容的更新频率如何？</div>
+                <div class="faq-a">知识库内容保持稳定，重大赛事或规则变化时会进行补充修订。</div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="footer-note">
+            万博体育 · 主题知识库 · 信息索引页
+        </div>
+    </div>
+</body>
+</html>
