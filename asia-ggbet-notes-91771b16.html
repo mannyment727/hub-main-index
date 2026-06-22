@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes">
+    <title>ggbet · 知识库入口</title>
+    <style>
+        /* --- 重置 & 基础 --- */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        html { scroll-behavior: smooth; }
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background: #f5f9fc;
+            color: #1a2a3a;
+            line-height: 1.6;
+            padding: 0 1rem 3rem;
+        }
+        a { color: #0f7b7b; text-decoration: none; border-bottom: 1px dashed #7fcbcb; transition: border-color 0.2s; }
+        a:hover, a:focus { border-bottom-style: solid; border-color: #0e5e5e; }
+        a:focus-visible { outline: 2px solid #0f7b7b; outline-offset: 2px; border-radius: 2px; }
+
+        /* --- 版式容器 --- */
+        .page-wrap {
+            max-width: 1120px;
+            margin: 0 auto;
+        }
+
+        /* --- 英雄区 --- */
+        .hero {
+            padding: 3rem 0 1.8rem;
+            text-align: center;
+            border-bottom: 1px solid #d5e7e7;
+            margin-bottom: 2rem;
+        }
+        .hero h1 {
+            font-size: 2.2rem;
+            font-weight: 500;
+            letter-spacing: -0.02em;
+            color: #084f4f;
+        }
+        .hero h1 span { color: #0b6b6b; font-weight: 600; }
+        .hero .sub {
+            margin-top: 0.6rem;
+            color: #3f6363;
+            font-size: 1rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding: 0 0.5rem;
+        }
+
+        /* --- 目录 / 网格卡片 --- */
+        .section-label {
+            font-size: 1.1rem;
+            font-weight: 600;
+            color: #0e5e5e;
+            margin: 2rem 0 1rem;
+            padding-top: 0.4rem;
+            border-top: 2px solid #b3d9d9;
+            display: inline-block;
+        }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 2rem;
+        }
+        .card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 1.4rem 1.2rem;
+            box-shadow: 0 2px 8px rgba(8, 79, 79, 0.05), 0 0 0 1px #e2f0f0;
+            transition: box-shadow 0.2s, transform 0.15s;
+        }
+        .card:hover { box-shadow: 0 6px 18px rgba(8, 79, 79, 0.08), 0 0 0 1px #b3d9d9; transform: translateY(-2px); }
+        .card h3 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #0f5f5f;
+            margin-bottom: 0.3rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .card h3::before {
+            content: "▹";
+            color: #1da1a1;
+            font-size: 1.1rem;
+        }
+        .card p {
+            font-size: 0.92rem;
+            color: #2e4a4a;
+            margin: 0.3rem 0 0.2rem;
+        }
+        .card .meta {
+            font-size: 0.78rem;
+            color: #5d7f7f;
+            margin-top: 0.6rem;
+            border-top: 1px solid #e2efef;
+            padding-top: 0.5rem;
+        }
+        .card .meta a { border-bottom: none; font-weight: 500; }
+
+        /* --- 说明 & 提示 区域 (双列) --- */
+        .info-panel {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            margin: 1.8rem 0 2rem;
+        }
+        .info-block {
+            flex: 1 1 280px;
+            background: #e9f4f4;
+            border-radius: 16px;
+            padding: 1.4rem 1.4rem 1.6rem;
+        }
+        .info-block h2 {
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #075252;
+            margin-bottom: 0.6rem;
+        }
+        .info-block p {
+            font-size: 0.93rem;
+            color: #1b3e3e;
+        }
+        .info-block .small-note {
+            margin-top: 0.8rem;
+            font-size: 0.82rem;
+            color: #407373;
+            border-left: 3px solid #1f9494;
+            padding-left: 0.8rem;
+        }
+
+        /* --- FAQ 摘要 (折叠感) --- */
+        .faq-mini {
+            margin: 2.2rem 0 1.2rem;
+        }
+        .faq-mini details {
+            background: white;
+            border-radius: 12px;
+            padding: 0.8rem 1.2rem;
+            margin-bottom: 0.6rem;
+            border: 1px solid #d7eaea;
+            transition: border 0.15s;
+        }
+        .faq-mini details[open] { border-color: #88c7c7; }
+        .faq-mini summary {
+            font-weight: 500;
+            color: #0a5d5d;
+            cursor: pointer;
+            padding: 0.2rem 0;
+        }
+        .faq-mini details p {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+            color: #214242;
+        }
+
+        /* --- 相关信息区 (水平列表) --- */
+        .related-links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.8rem 2rem;
+            background: #ffffffd9;
+            border-radius: 30px;
+            padding: 0.8rem 1.4rem;
+            margin: 2rem 0 0.5rem;
+            border: 1px solid #cde0e0;
+            backdrop-filter: blur(2px);
+        }
+        .related-links span {
+            font-size: 0.85rem;
+            color: #306060;
+            white-space: nowrap;
+        }
+        .related-links a {
+            font-size: 0.88rem;
+            border-bottom: 1px dotted #69b3b3;
+        }
+
+        /* --- 页脚 --- */
+        .footer-note {
+            margin-top: 2.8rem;
+            padding-top: 1.2rem;
+            font-size: 0.8rem;
+            color: #547474;
+            border-top: 1px solid #d1e4e4;
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+        }
+
+        /* --- 移动端微调 --- */
+        @media (max-width: 540px) {
+            .hero h1 { font-size: 1.7rem; }
+            .card-grid { gap: 0.9rem; }
+            .related-links { padding: 0.6rem 1rem; }
+        }
+        @media (max-width: 380px) {
+            .card { padding: 1rem; }
+        }
+    </style>
+</head>
+<body>
+<div class="page-wrap">
+
+    <!-- 英雄区 -->
+    <header class="hero">
+        <h1>再次访问 · <span>ggbet</span> 知识库</h1>
+        <p class="sub">收藏当前页，保持对平台功能、更新与使用资讯的持续关注。<br>以下内容将帮助您快速定位感兴趣的信息区域。</p>
+    </header>
+
+    <!-- 目录区域：网格卡片（内容区） -->
+    <div class="section-label">📋 信息目录</div>
+    <div class="card-grid">
+        <div class="card">
+            <h3>平台定位</h3>
+            <p>ggbet 是一个面向线上互动与娱乐场景的综合性服务站点，提供多种功能模块与用户支持。</p>
+            <div class="meta">相关术语 · 功能介绍</div>
+        </div>
+        <div class="card">
+            <h3>功能模块</h3>
+            <p>包括实时动态、个人中心、资源索引、偏好设置等。各模块独立运作，可通过导航快速切换。</p>
+            <div class="meta">模块说明 · 路径指引</div>
+        </div>
+        <div class="card">
+            <h3>使用场景</h3>
+            <p>适合日常查询、信息比对、账户管理及社群交流。建议将常用功能添加到书签栏。</p>
+            <div class="meta">场景示例 · 效率建议</div>
+        </div>
+        <div class="card">
+            <h3>持续关注</h3>
+            <p>内容会定期调整与优化。保持页面收藏，即可在需要时直接访问最新状态。</p>
+            <div class="meta"><a href="https://asia-ggbet.com">ggbet</a> · 更新记录</div>
+        </div>
+    </div>
+
+    <!-- 说明区 + 提示区 (双列) -->
+    <div class="info-panel">
+        <div class="info-block">
+            <h2>再次访问与收藏</h2>
+            <p>将本页添加至浏览器书签或收藏夹，即可在任意设备快速返回。所有指向 <a href="https://asia-ggbet.com">ggbet</a> 的链接均为直接跳转，无需中间页。页面结构以信息归类为主，方便您按需查阅不同章节。</p>
+            <div class="small-note">💡 提示：建议定期清理缓存，确保获取最新内容。</div>
+        </div>
+        <div class="info-block">
+            <h2>使用注意事项</h2>
+            <p>操作前请确认网络环境稳定。如遇页面异常，可尝试刷新或更换浏览器。本知识库仅提供信息整理与入口指引，不存储用户凭证。</p>
+            <div class="small-note">🔒 安全提醒：请通过官方域名访问，核对网址无误。</div>
+        </div>
+    </div>
+
+    <!-- FAQ 摘要区（问答片段） -->
+    <div class="faq-mini">
+        <details>
+            <summary>FAQ：如何快速找到特定功能？</summary>
+            <p>本页按模块划分卡片，每个卡片包含简要说明。如需深入，可点击卡片中的“ggbet”链接直接跳转至对应服务。建议先浏览“功能模块”卡片。</p>
+        </details>
+        <details>
+            <summary>FAQ：页面内容多久更新一次？</summary>
+            <p>介绍性内容根据平台调整不定期修订。您可以通过收藏页面并在数周后重新访问来获取最新目录。相关链接始终指向 <a href="https://asia-ggbet.com">ggbet</a> 主站。</p>
+        </details>
+        <details>
+            <summary>FAQ：移动端显示是否正常？</summary>
+            <p>页面采用响应式网格，在手机、平板及桌面均能自适应。建议使用系统自带浏览器或 Chrome 以获得最佳渲染效果。</p>
+        </details>
+    </div>
+
+    <!-- 相关信息区（水平排列） -->
+    <div class="related-links">
+        <span>📌 相关信息：</span>
+        <span><a href="https://asia-ggbet.com">ggbet</a></span>
+        <span>🔎 站内导航</span>
+        <span>📁 帮助中心</span>
+        <span>📅 最近更新：2025-04</span>
+    </div>
+
+    <!-- 页脚 -->
+    <div class="footer-note">
+        <span>知识库入口 · 仅供信息参考</span>
+        <span>页面版本 1.1 | 内容定期修订</span>
+    </div>
+
+</div>
+</body>
+</html>
